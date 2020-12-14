@@ -81,7 +81,11 @@ body{
     box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
 }
 
-.btn:hover{
+.clear{
+    background-color: var(--cherry);
+}
+
+.btn:hover, .clear:hover{
     cursor: pointer;
     background-color: var(--peach);
 }
@@ -98,4 +102,40 @@ body{
 
 #author a:hover{
     color: var(--peach);
+}
+
+
+@media (max-width: 550px){
+    #calc{
+        width: 100vw; 
+        
+        padding: 25px;
+        margin-top: 0px;
+    
+        box-sizing: border-box;
+        box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.5);
+    }
+    
+    #calc-display{
+        background: var(--blu);
+        font-weight: 500;
+
+        font-size: 8vw;
+
+        min-height: 80px;
+        padding: 0px 20px;
+    }
+    
+    #calc-body{
+        margin-top: 25px;
+    }
+
+    .btn{
+        font-size: 7vw;
+    
+        border-radius: 10%;
+        margin: 8px;
+    
+        min-width: 16vw; min-height: 16vw;
+    }
 }
