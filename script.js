@@ -142,26 +142,37 @@ function evaluate(str){
                         if(lastChar == "!")
                         {
                             //Remove last char
-                            expresion[i][j][k] = (expresion[i][j][k]).slice(0, currentElement.length - 1)
+                            expresion[i][j][k] = (expresion[i][j][k]).slice(0, currentElement.length - 1);
 
                             //Convert to factorial
-                            expresion[i][j][k] = CALCULATOR["!"](expresion[i][j][k])
+                            expresion[i][j][k] = CALCULATOR["!"](expresion[i][j][k]);
                         }
                     }
 
                     //Start to resolve at ^ level
                     //console.log(expo, resolveExp(expo))
-                    expresion[i][j] = resolveExp(expo)
+                    expresion[i][j] = resolveExp(expo);
                 }
             }
 
             //Resolve at * / level
             //console.log(temp, resolveExp(temp))
-            expresion[i] = resolveExp(temp)
+            expresion[i] = resolveExp(temp);
         }
     }
 
     //Now everything has been reduced to simple + -
     //console.log(resolveExp(expresion))
-    DISPLAY.innerText = resolveExp(expresion)
+    
+
+    let solution = resolveExp(expresion);
+
+    
+    //Check if solution it's a number
+
+    if(!solution)
+        DISPLAY.innerText = "Syntax error";
+    else
+        DISPLAY.innerText = resolveExp(expresion);
+
 }
