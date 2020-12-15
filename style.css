@@ -37,17 +37,20 @@ body{
 #calc-display{
     background: var(--blu);
     font-weight: 500;
-    letter-spacing: 5px;
-    font-size: 48px;
+    font-size: 44px;
 
     display: flex;
-    justify-content: end;
-    align-items: center;
 
-    min-height: 120px;
-    padding: 0px 20px;
-
+    padding: 20px;
     box-sizing: border-box;
+}
+
+#calc-display p{
+    margin: 0;
+    width: 100%;
+    word-wrap: break-word;
+    min-height: 60px;
+    text-align: right;
 }
 
 #calc-body{
@@ -90,6 +93,13 @@ body{
     background-color: var(--peach);
 }
 
+.equals{
+    grid-column-start: 3;
+    grid-column-end: 5;
+    font-size: 44px;
+    font-weight: 500;
+    border-radius: 0px;
+}
 
 #author{
     text-align: center;
@@ -132,8 +142,6 @@ body{
 
     .btn{
         font-size: 7vw;
-    
-        border-radius: 10%;
         margin: 8px;
     
         min-width: 16vw; min-height: 16vw;
