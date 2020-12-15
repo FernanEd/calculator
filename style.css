@@ -5,6 +5,7 @@
     --blu: #73A6A2;
     --peach: #FF9A8C;
     --cherry: #E86356;
+    --gray: #636363;
     --dark: #403E39;
 }
 
@@ -68,7 +69,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--blu);
+    background-color: var(--gray);
 
     font-weight: 300;
     font-size: 40px;
@@ -88,6 +89,9 @@ body{
     background-color: var(--cherry);
 }
 
+.equals{
+    background-color: var(--blu);
+}
 
 .btn:hover, .clear:hover{
     cursor: pointer;
