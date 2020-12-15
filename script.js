@@ -7,10 +7,15 @@ const CALCULATOR = {
     "^": (num) => num2 => Math.pow(Number(num), Number(num2)),
     "!": (num) => {
         num = Number(num)
+
+        if(num === 0)
+            return 1
+
         for(let i = num - 1; i > 1; i--)
         {
             num *= i;
         }
+
         return num
     },
 }
@@ -53,15 +58,18 @@ DOT_KEY.addEventListener("click", e => {
     let currentString = DISPLAY.innerText;
     let lastChar = currentString.charAt(currentString.length - 1);
 
-    //If the last character is an operator do not write
-    if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "")
+    let expresionArray = currentString.split(/[\+\-\*\/\^]/);
+    currentNumber = expresionArray[expresionArray.length -1]
+
+    //If the last character is an operator do not write, also if the current number has . don't let put another one
+    if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "" && !currentNumber.includes("."))
         addToDisplay(".");
 })
 
 FACTORIAL_KEY.addEventListener("click", e => {
     let currentString = DISPLAY.innerText;
     let lastChar = currentString.charAt(currentString.length - 1);
-
+    
     //If the last character is an operator do not write
     if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "")
         addToDisplay("!");
@@ -88,6 +96,9 @@ EQUAL_KEY.addEventListener("click", e => {
 function addToDisplay(str){
     DISPLAY.innerText += str;
 }
+
+// Keyboard Support
+
 
 function evaluate(str){
     //Split expresion in + -
@@ -170,7 +181,7 @@ function evaluate(str){
     
     //Check if solution it's a number
 
-    if(!solution)
+    if(isNaN(solution))
         DISPLAY.innerText = "Syntax error";
     else
         DISPLAY.innerText = resolveExp(expresion);
