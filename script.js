@@ -22,8 +22,9 @@ const CALCULATOR = {
 
 const DISPLAY = document.querySelector("#calc-display p");
 
-const NUMBERS_KEYS = document.querySelectorAll(".numb");
-const OPERATOR_KEYS = document.querySelectorAll(".operator");
+//It's important to sort them in order
+const NUMBERS_KEYS = Array.from(document.querySelectorAll(".numb")).sort((a, b) => a.innerText - b.innerText);
+const OPERATOR_KEYS = Array.from(document.querySelectorAll(".operator"));
 
 const DOT_KEY = document.querySelector(".dot");
 const FACTORIAL_KEY = document.querySelector(".factorial");
@@ -62,7 +63,7 @@ DOT_KEY.addEventListener("click", e => {
     currentNumber = expresionArray[expresionArray.length -1]
 
     //If the last character is an operator do not write, also if the current number has . don't let put another one
-    if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "" && !currentNumber.includes("."))
+    if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "" && lastChar != "!" && !currentNumber.includes("."))
         addToDisplay(".");
 })
 
@@ -71,7 +72,7 @@ FACTORIAL_KEY.addEventListener("click", e => {
     let lastChar = currentString.charAt(currentString.length - 1);
     
     //If the last character is an operator do not write
-    if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "")
+    if(!(/[\+\-\*\/\.\^]/).test(lastChar) && lastChar != "" && lastChar != "!") 
         addToDisplay("!");
 })
 
@@ -98,7 +99,39 @@ function addToDisplay(str){
 }
 
 // Keyboard Support
+document.addEventListener("keypress", e => {
+    if((/[0-9]/).test(e.key)){
+        NUMBERS_KEYS[e.key].click();
+    }
 
+    if((/[\+\-\*\/]/).test(e.key)){
+        let index = OPERATOR_KEYS.map(elem => elem.innerText).indexOf(e.key);
+        OPERATOR_KEYS[index].click();
+    }
+
+    if(e.key === "."){
+        DOT_KEY.click();
+    }
+
+    if(e.key === "!"){
+        FACTORIAL_KEY.click();
+    }
+
+    if(e.key === "^"){
+        EXPONENT_KEY.click();
+    }
+
+    if(e.key === "=" || e.key ==="Enter"){
+        EQUAL_KEY.click();
+    }
+  });
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape")
+    {
+        AC_KEY.click();
+    }
+  });
 
 function evaluate(str){
     //Split expresion in + -
