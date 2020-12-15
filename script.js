@@ -29,7 +29,7 @@ const OPERATOR_KEYS = Array.from(document.querySelectorAll(".operator"));
 const DOT_KEY = document.querySelector(".dot");
 const FACTORIAL_KEY = document.querySelector(".factorial");
 const EXPONENT_KEY = document.querySelector(".exponent");
-const AC_KEY = document.querySelector(".clear");
+const CLEAR_KEY = document.querySelector(".clear");
 const EQUAL_KEY = document.querySelector(".equals");
 
 NUMBERS_KEYS.forEach(key => {
@@ -85,8 +85,23 @@ EXPONENT_KEY.addEventListener("click", e => {
         addToDisplay("^");
 })
 
-AC_KEY.addEventListener("click", e => {
-    DISPLAY.innerText = "";
+//CLEAR - REMOVE KEY
+CLEAR_KEY.addEventListener("click", e => {
+    removeFromDisplay()
+})
+
+let deleteBtn = 0;
+
+function deleteDisplay(){
+    DISPLAY.innerText = ""
+}
+
+CLEAR_KEY.addEventListener("mousedown", e => {
+    deleteBtn = setInterval(deleteDisplay, 800);
+})
+
+CLEAR_KEY.addEventListener("mouseup", e => {
+    clearInterval(deleteBtn);
 })
 
 EQUAL_KEY.addEventListener("click", e => {
@@ -96,6 +111,10 @@ EQUAL_KEY.addEventListener("click", e => {
 
 function addToDisplay(str){
     DISPLAY.innerText += str;
+}
+
+function removeFromDisplay(){
+    DISPLAY.innerText = DISPLAY.innerText.slice(0, DISPLAY.innerHTML.length - 1);
 }
 
 // Keyboard Support
@@ -127,9 +146,14 @@ document.addEventListener("keypress", e => {
   });
 
 document.addEventListener("keydown", e => {
+    if (e.key === "Backspace")
+    {
+        removeFromDisplay();
+    }
+
     if (e.key === "Escape")
     {
-        AC_KEY.click();
+        deleteDisplay()
     }
   });
 
