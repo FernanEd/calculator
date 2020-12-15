@@ -87,25 +87,19 @@ body{
     box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
 }
 
-.clear{
+.delete, .clear{
     background-color: var(--cherry);
 }
 
 .equals{
     background-color: var(--blu);
+    font-size: 44px;
+    font-weight: 500;
 }
 
 .btn:hover, .clear:hover{
     cursor: pointer;
     background-color: var(--peach);
-}
-
-.equals{
-    grid-column-start: 3;
-    grid-column-end: 5;
-    font-size: 44px;
-    font-weight: 500;
-    border-radius: 0px;
 }
 
 #author{

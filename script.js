@@ -29,6 +29,7 @@ const OPERATOR_KEYS = Array.from(document.querySelectorAll(".operator"));
 const DOT_KEY = document.querySelector(".dot");
 const FACTORIAL_KEY = document.querySelector(".factorial");
 const EXPONENT_KEY = document.querySelector(".exponent");
+const DELETE_KEY = document.querySelector(".delete");
 const CLEAR_KEY = document.querySelector(".clear");
 const EQUAL_KEY = document.querySelector(".equals");
 
@@ -85,32 +86,26 @@ EXPONENT_KEY.addEventListener("click", e => {
         addToDisplay("^");
 })
 
-//CLEAR - REMOVE KEY
+//CLEAR - DELETE KEY
+DELETE_KEY.addEventListener("click", e => {
+    removeFromDisplay();
+})
+
 CLEAR_KEY.addEventListener("click", e => {
-    removeFromDisplay()
-})
-
-let deleteBtn = 0;
-
-function deleteDisplay(){
-    DISPLAY.innerText = ""
-}
-
-CLEAR_KEY.addEventListener("mousedown", e => {
-    deleteBtn = setInterval(deleteDisplay, 800);
-})
-
-CLEAR_KEY.addEventListener("mouseup", e => {
-    clearInterval(deleteBtn);
+    deleteDisplay();
 })
 
 EQUAL_KEY.addEventListener("click", e => {
     let currentCalc = DISPLAY.innerText;
-    evaluate(currentCalc)
+    evaluate(currentCalc);
 })
 
 function addToDisplay(str){
     DISPLAY.innerText += str;
+}
+
+function deleteDisplay(){
+    DISPLAY.innerText = ""
 }
 
 function removeFromDisplay(){
